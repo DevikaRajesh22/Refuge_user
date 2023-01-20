@@ -39,20 +39,23 @@ class LoginScreen extends StatelessWidget {
                 hintText: "Enter Password"),
           ),
         ),
-        Container(
-          height: 38,
-          width: 300,
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: ElevatedButton(
-            child: const Text("Login"),
-            onPressed: () {},
+        Padding(
+          padding: const EdgeInsets.all(35),
+          child: Container(
+            height: 38,
+            width: 300,
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+            child: ElevatedButton(
+              child: const Text("Login"),
+              onPressed: () {},
+            ),
           ),
         ),
         // ignore: prefer_const_constructors
         Padding(
             // ignore: prefer_const_constructors
             padding: EdgeInsets.all(
-                10)), // ignore: prefer_const_literals_to_create_immutables
+                1)), // ignore: prefer_const_literals_to_create_immutables
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -66,30 +69,37 @@ class LoginScreen extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 55),
-          child: Row(
-            children: const [
-              Expanded(
-                child: Divider(
-                  color: Color.fromARGB(255, 96, 96, 96),
-                  thickness: 1,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Padding(
+            padding: const EdgeInsets.all(65),
+            child: Row(
+              children: const [
+                Expanded(
+                  child: Divider(
+                    color: Color.fromARGB(255, 96, 96, 96),
+                    thickness: 1,
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text("OR"),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Divider(
-                  color: Color.fromARGB(255, 96, 96, 96),
-                  thickness: 1,
+                SizedBox(
+                  width: 10,
                 ),
-              )
-            ],
+                Text("OR"),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Divider(
+                    color: Color.fromARGB(255, 96, 96, 96),
+                    thickness: 1,
+                  ),
+                )
+              ],
+            ),
           ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [Text("Login with facebook")],
         )
       ],
     )));
