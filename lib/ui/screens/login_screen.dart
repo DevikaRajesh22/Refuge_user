@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -44,6 +46,49 @@ class LoginScreen extends StatelessWidget {
           child: ElevatedButton(
             child: const Text("Login"),
             onPressed: () {},
+          ),
+        ),
+        // ignore: prefer_const_constructors
+        Padding(
+            // ignore: prefer_const_constructors
+            padding: EdgeInsets.all(
+                10)), // ignore: prefer_const_literals_to_create_immutables
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
+            const Text("Forgot your login details ? "),
+            const Text(
+              " Get help signing in . ",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 55),
+          child: Row(
+            children: const [
+              Expanded(
+                child: Divider(
+                  color: Color.fromARGB(255, 96, 96, 96),
+                  thickness: 1,
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text("OR"),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Divider(
+                  color: Color.fromARGB(255, 96, 96, 96),
+                  thickness: 1,
+                ),
+              )
+            ],
           ),
         )
       ],
