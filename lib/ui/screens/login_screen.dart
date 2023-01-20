@@ -36,6 +36,15 @@ class LoginScreen extends StatelessWidget {
                 labelText: "Password",
                 hintText: "Enter Password"),
           ),
+        ),
+        Container(
+          height: 38,
+          width: 300,
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: ElevatedButton(
+            child: const Text("Login"),
+            onPressed: () {},
+          ),
         )
       ],
     )));
