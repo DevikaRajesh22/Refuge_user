@@ -10,18 +10,32 @@ class HomeScreen extends StatelessWidget {
         height: 70,
         color: const Color.fromARGB(255, 2, 62, 138),
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsetsDirectional.only(),
           child: SizedBox(
             child: Row(
-              children: const [
-                Icon(Icons.notifications),
-                Icon(Icons.home),
-                Icon(Icons.person)
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                buildContainerBottomNav(Icons.notifications),
+                buildContainerBottomNav(Icons.home, isSelected: true),
+                buildContainerBottomNav(Icons.person),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Container buildContainerBottomNav(IconData icon, {isSelected = false}) {
+    return Container(
+      decoration: BoxDecoration(
+          color: isSelected
+              ? const Color.fromARGB(255, 151, 200, 240)
+              : Colors.white,
+          shape: BoxShape.circle),
+      height: 50,
+      width: 50,
+      child: Icon(icon, color: isSelected ? Colors.white : Colors.black),
     );
   }
 }
