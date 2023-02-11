@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class LocationScreen extends StatelessWidget {
+  const LocationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,15 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                width: 500,
-                height: 250,
-                color: const Color.fromARGB(255, 32, 118, 188),
+                  width: 500,
+                  height: 250,
+                  color: const Color.fromARGB(255, 32, 118, 188)),
+              Text(
+                'Whats your Risk Level?',
+                style: GoogleFonts.inriaSans(
+                    fontSize: 15,
+                    color: const Color.fromARGB(255, 3, 4, 85),
+                    fontWeight: FontWeight.bold),
               ),
               Padding(
                 padding: const EdgeInsets.all(3),
@@ -39,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                       height: 55,
                       width: 250,
                       child: ElevatedButton(
-                        child: const Text("Location"),
+                        child: const Text("High Risk Area"),
                         onPressed: () {},
                       ),
                     ),
@@ -49,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                         height: 55,
                         width: 250,
                         child: ElevatedButton(
-                          child: const Text("Location"),
+                          child: const Text("Medium Risk Area"),
                           onPressed: () {},
                         ),
                       ),
@@ -60,43 +67,24 @@ class HomeScreen extends StatelessWidget {
                         height: 55,
                         width: 250,
                         child: ElevatedButton(
-                          child: const Text("Location"),
+                          child: const Text("Low Risk Area"),
                           onPressed: () {},
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: SizedBox(
-                        height: 55,
-                        width: 250,
-                        child: ElevatedButton(
-                          child: const Text("Location"),
-                          onPressed: () {},
-                        ),
-                      ),
+                    Text(
+                      "The Risk Level Should be the one assigned by your ",
+                      style: GoogleFonts.inriaSans(
+                          fontSize: 16,
+                          color: const Color.fromARGB(255, 30, 30, 32),
+                          fontWeight: FontWeight.bold),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: SizedBox(
-                        height: 55,
-                        width: 250,
-                        child: ElevatedButton(
-                          child: const Text("Location"),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: SizedBox(
-                        height: 55,
-                        width: 250,
-                        child: ElevatedButton(
-                          child: const Text("Location"),
-                          onPressed: () {},
-                        ),
-                      ),
+                    Text(
+                      "local authorities",
+                      style: GoogleFonts.inriaSans(
+                          fontSize: 16,
+                          color: const Color.fromARGB(255, 30, 30, 32),
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),

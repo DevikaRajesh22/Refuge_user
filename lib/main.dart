@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:refuge_user/ui/screens/home_screen.dart';
+import 'package:refuge_user/ui/screens/Home_screen.dart';
+import 'package:refuge_user/ui/screens/Location_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: LocationScreen(),
     );
   }
 }
