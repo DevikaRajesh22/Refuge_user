@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EmergencyScreen extends StatelessWidget {
-  const EmergencyScreen({super.key});
+class LocationpopupScreen extends StatelessWidget {
+  const LocationpopupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class EmergencyScreen extends StatelessWidget {
       decoration: BoxDecoration(
           color: isSelected
               ? const Color.fromARGB(255, 151, 200, 240)
-              : const Color.fromARGB(255, 228, 218, 218),
+              : Color.fromARGB(255, 228, 218, 218),
           shape: BoxShape.circle),
       height: 50,
       width: 50,

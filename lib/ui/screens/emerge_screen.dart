@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EmergencyScreen extends StatelessWidget {
-  const EmergencyScreen({super.key});
+class EmergeScreen extends StatelessWidget {
+  const EmergeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,16 @@ class EmergencyScreen extends StatelessWidget {
           ),
         ),
       ),
+      body: SafeArea(
+          child: Container(
+        height: 250,
+        width: 500,
+        decoration: const BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30))),
+      )),
     );
   }
 
@@ -30,8 +40,8 @@ class EmergencyScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: isSelected
-              ? const Color.fromARGB(255, 151, 200, 240)
-              : const Color.fromARGB(255, 228, 218, 218),
+              ? const Color.fromARGB(255, 2, 62, 138)
+              : const Color.fromARGB(255, 2, 62, 138),
           shape: BoxShape.circle),
       height: 50,
       width: 50,
