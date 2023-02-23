@@ -50,10 +50,10 @@ class EmergeScreen extends StatelessWidget {
               Container(
                 height: 120,
                 width: 160,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    border: Border.all()),
+                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)]),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -77,10 +77,10 @@ class EmergeScreen extends StatelessWidget {
               Container(
                 height: 120,
                 width: 160,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all()),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)]),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -109,10 +109,10 @@ class EmergeScreen extends StatelessWidget {
               Container(
                 height: 120,
                 width: 160,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all()),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)]),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -136,12 +136,12 @@ class EmergeScreen extends StatelessWidget {
               Container(
                 height: 120,
                 width: 160,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
-                    borderRadius: const BorderRadius.all(
+                    borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    border: Border.all()),
+                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)]),
                 child: Column(
                   children: [
                     const SizedBox(
