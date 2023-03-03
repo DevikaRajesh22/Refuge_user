@@ -1,121 +1,112 @@
 import 'package:flutter/material.dart';
+import 'package:refuge_user/ui/screens/home_screen_sections/dashboard_section.dart';
+import 'package:refuge_user/ui/screens/home_screen_sections/notification_section.dart';
+import 'package:refuge_user/ui/screens/home_screen_sections/profile_section.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController =
+      TabController(length: 3, vsync: this, initialIndex: 1);
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: Container(
-          height: 70,
-          color: const Color.fromARGB(255, 2, 62, 138),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.only(),
-            child: SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  buildContainerBottomNav(Icons.notifications),
-                  buildContainerBottomNav(Icons.home, isSelected: true),
-                  buildContainerBottomNav(Icons.person),
-                ],
-              ),
-            ),
-          ),
+      body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: tabController,
+        children: const [
+          NotificationSection(),
+          DashboardSection(),
+          ProfileSection(),
+        ],
+      ),
+      bottomNavigationBar: Material(
+        color: Colors.blue[900],
+        child: CustomBottomNavBar(
+          selectedIndex: tabController.index,
+          onChanged: (int index) {
+            tabController.animateTo(index);
+            setState(() {});
+          },
         ),
-        body: SafeArea(
-          child: Column(
-            children: [
-              Container(
-                width: 500,
-                height: 250,
-                color: const Color.fromARGB(255, 32, 118, 188),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(3),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 55,
-                      width: 250,
-                      child: ElevatedButton(
-                        child: const Text("Location"),
-                        onPressed: () {},
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: SizedBox(
-                        height: 55,
-                        width: 250,
-                        child: ElevatedButton(
-                          child: const Text("Location"),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: SizedBox(
-                        height: 55,
-                        width: 250,
-                        child: ElevatedButton(
-                          child: const Text("Location"),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: SizedBox(
-                        height: 55,
-                        width: 250,
-                        child: ElevatedButton(
-                          child: const Text("Location"),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: SizedBox(
-                        height: 55,
-                        width: 250,
-                        child: ElevatedButton(
-                          child: const Text("Location"),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: SizedBox(
-                        height: 55,
-                        width: 250,
-                        child: ElevatedButton(
-                          child: const Text("Location"),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
+}
 
-  Container buildContainerBottomNav(IconData icon, {isSelected = false}) {
-    return Container(
-      decoration: BoxDecoration(
-          color: isSelected
-              ? const Color.fromARGB(255, 151, 200, 240)
-              : const Color.fromARGB(255, 2, 62, 138),
-          shape: BoxShape.circle),
-      height: 50,
-      width: 50,
-      child: Icon(icon, color: isSelected ? Colors.white : Colors.black),
+class CustomBottomNavBar extends StatelessWidget {
+  final int selectedIndex;
+  final Function(int) onChanged;
+  const CustomBottomNavBar({
+    Key? key,
+    required this.selectedIndex,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        NavBarButton(
+          iconData: Icons.notifications_outlined,
+          selectedIconData: Icons.notifications,
+          onPressed: () {
+            onChanged(0);
+          },
+          isSelected: selectedIndex == 0,
+        ),
+        NavBarButton(
+          iconData: Icons.home_outlined,
+          selectedIconData: Icons.home,
+          onPressed: () {
+            onChanged(1);
+          },
+          isSelected: selectedIndex == 1,
+        ),
+        NavBarButton(
+          iconData: Icons.person_outline,
+          selectedIconData: Icons.person,
+          onPressed: () {
+            onChanged(2);
+          },
+          isSelected: selectedIndex == 2,
+        ),
+      ],
+    );
+  }
+}
+
+class NavBarButton extends StatelessWidget {
+  final IconData iconData, selectedIconData;
+  final Function() onPressed;
+  final bool isSelected;
+  const NavBarButton({
+    Key? key,
+    required this.iconData,
+    required this.selectedIconData,
+    required this.onPressed,
+    required this.isSelected,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, bottom: 10),
+      child: IconButton(
+        onPressed: onPressed,
+        icon: Icon(
+          isSelected ? selectedIconData : iconData,
+          size: 35,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LocationpopupScreen extends StatelessWidget {
-  const LocationpopupScreen({super.key});
+class JobpostingScreen extends StatelessWidget {
+  const JobpostingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,26 @@ class LocationpopupScreen extends StatelessWidget {
           ),
         ),
       ),
+      body: SafeArea(
+          child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: const Color.fromARGB(225, 2, 62, 138),
+          ),
+          Container(
+            height: 620,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+            ),
+          )
+        ],
+      )),
     );
   }
 
@@ -31,7 +51,7 @@ class LocationpopupScreen extends StatelessWidget {
       decoration: BoxDecoration(
           color: isSelected
               ? const Color.fromARGB(255, 151, 200, 240)
-              : const Color.fromARGB(255, 228, 218, 218),
+              : const Color.fromARGB(255, 2, 62, 138),
           shape: BoxShape.circle),
       height: 50,
       width: 50,
