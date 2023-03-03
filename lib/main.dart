@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:refuge_user/ui/screens/class_screen.dart';
 import 'package:refuge_user/ui/screens/emerge_screen.dart';
 import 'package:refuge_user/ui/screens/home_screen.dart';
+import 'package:refuge_user/ui/screens/jobposting_screen.dart';
 import 'package:refuge_user/ui/screens/location_screen.dart';
 import 'package:refuge_user/ui/screens/splash_screen.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ClassScreen(),
+      home: JobpostingScreen(),
     );
   }
 }
