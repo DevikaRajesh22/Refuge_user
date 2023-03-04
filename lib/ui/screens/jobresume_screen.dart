@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ReporthazardScreen extends StatelessWidget {
-  const ReporthazardScreen({super.key});
+class JobResumeScreen extends StatelessWidget {
+  const JobResumeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
