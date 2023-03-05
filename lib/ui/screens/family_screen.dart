@@ -9,20 +9,22 @@ class FamilyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          Expanded(
-            child: Container(
-              height: 250,
-              width: 500,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30)),
-                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)]),
-            ),
+        child: Container(
+          height: 230,
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30)),
+              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 12)]),
+          child: Image.asset(
+            'assets/images/family.png',
+            height: 600,
+            width: 900,
+            alignment: Alignment.center,
           ),
-        ]),
+        ),
       ),
     );
   }
