@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class CareteamScreen extends StatelessWidget {
-  const CareteamScreen({super.key});
+import '../../widgets/custom_radio_buttton.dart';
+
+class CareTeamScreen extends StatelessWidget {
+  const CareTeamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        height: 70,
-        color: const Color.fromARGB(255, 2, 62, 138),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.only(),
-          child: SizedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                buildContainerBottomNav(Icons.notifications),
-                buildContainerBottomNav(Icons.home, isSelected: true),
-                buildContainerBottomNav(Icons.person),
-              ],
-            ),
-          ),
-        ),
-      ),
       body: SafeArea(
           child: Stack(
         alignment: Alignment.bottomCenter,
@@ -40,22 +26,210 @@ class CareteamScreen extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
             ),
-          )
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      'Choose your option:',
+                      style: GoogleFonts.inriaSans(
+                          fontSize: 23,
+                          color: const Color.fromARGB(255, 140, 140, 140),
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 60,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Pediatrics',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Cardiology',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Gastroenterology',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Rehabilitation',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 26,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Gynaecology',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 37,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(35),
+                      child: Container(
+                        height: 38,
+                        width: 300,
+                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                        child: ElevatedButton(
+                          child: const Text("Submit"),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       )),
-    );
-  }
-
-  Container buildContainerBottomNav(IconData icon, {isSelected = false}) {
-    return Container(
-      decoration: BoxDecoration(
-          color: isSelected
-              ? const Color.fromARGB(255, 151, 200, 240)
-              : const Color.fromARGB(255, 2, 62, 138),
-          shape: BoxShape.circle),
-      height: 50,
-      width: 50,
-      child: Icon(icon, color: isSelected ? Colors.white : Colors.black),
     );
   }
 }

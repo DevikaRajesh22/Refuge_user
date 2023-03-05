@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:refuge_user/ui/screens/careteam_screen.dart';
+import 'package:refuge_user/ui/screens/emergencyservices_screen.dart';
+import 'package:refuge_user/ui/screens/family_screen.dart';
 import 'package:refuge_user/ui/screens/reporthazard_screen.dart';
 
 void main() {
@@ -12,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ReporthazardScreen(),
+      home: FamilyScreen(),
     );
   }
 }

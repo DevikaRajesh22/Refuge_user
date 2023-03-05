@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:refuge_user/widgets/custom_button.dart';
 
 class FamilyScreen extends StatelessWidget {
   const FamilyScreen({super.key});
@@ -6,76 +8,22 @@ class FamilyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: Container(
-          height: 70,
-          color: const Color.fromARGB(255, 2, 62, 138),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.only(),
-            child: SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  buildContainerBottomNav(Icons.notifications),
-                  buildContainerBottomNav(Icons.home, isSelected: true),
-                  buildContainerBottomNav(Icons.person),
-                ],
-              ),
+      body: SafeArea(
+        child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+          Expanded(
+            child: Container(
+              height: 250,
+              width: 500,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30)),
+                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)]),
             ),
           ),
-        ),
-        body: SafeArea(
-          child: Column(
-            children: [
-              Container(
-                width: 500,
-                height: 250,
-                color: const Color.fromARGB(255, 139, 177, 208),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Container(
-                        width: 180,
-                        height: 100,
-                        color: const Color.fromARGB(255, 55, 124, 180)),
-                    Container(
-                        width: 180,
-                        height: 100,
-                        color: const Color.fromARGB(255, 79, 158, 222))
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Container(
-                        width: 180,
-                        height: 100,
-                        color: const Color.fromARGB(255, 55, 124, 180)),
-                    Container(
-                        width: 180,
-                        height: 100,
-                        color: const Color.fromARGB(255, 79, 158, 222))
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ));
-  }
-
-  Container buildContainerBottomNav(IconData icon, {isSelected = false}) {
-    return Container(
-      decoration: BoxDecoration(
-          color: isSelected
-              ? const Color.fromARGB(255, 151, 200, 240)
-              : const Color.fromARGB(255, 2, 62, 138),
-          shape: BoxShape.circle),
-      height: 50,
-      width: 50,
-      child: Icon(icon, color: isSelected ? Colors.white : Colors.black),
+        ]),
+      ),
     );
   }
 }

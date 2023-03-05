@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../widgets/custom_radio_buttton.dart';
+
 class ReporthazardScreen extends StatelessWidget {
   const ReporthazardScreen({super.key});
 
@@ -212,6 +214,21 @@ class ReporthazardScreen extends StatelessWidget {
                         )
                       ],
                     ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(35),
+                      child: Container(
+                        height: 38,
+                        width: 300,
+                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                        child: ElevatedButton(
+                          child: const Text("Submit"),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -219,34 +236,6 @@ class ReporthazardScreen extends StatelessWidget {
           ),
         ],
       )),
-    );
-  }
-}
-
-class CustomRadioButton extends StatelessWidget {
-  final String label;
-  final bool isSelected;
-  final Function() onPressed;
-  const CustomRadioButton({
-    Key? key,
-    required this.label,
-    required this.isSelected,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          isSelected ? Icons.check_circle_rounded : Icons.circle_outlined,
-          color: isSelected ? Colors.blue : Colors.grey,
-        ),
-        const SizedBox(
-          width: 5,
-        ),
-        Text(label),
-      ],
     );
   }
 }

@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class EmergencyservicesScreen extends StatelessWidget {
-  const EmergencyservicesScreen({super.key});
+import '../../widgets/custom_radio_buttton.dart';
+
+class EmergencyServiceScreen extends StatelessWidget {
+  const EmergencyServiceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        height: 70,
-        color: const Color.fromARGB(255, 2, 62, 138),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.only(),
-          child: SizedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                buildContainerBottomNav(Icons.notifications),
-                buildContainerBottomNav(Icons.home, isSelected: true),
-                buildContainerBottomNav(Icons.person),
-              ],
-            ),
-          ),
-        ),
-      ),
       body: SafeArea(
           child: Stack(
         alignment: Alignment.bottomCenter,
@@ -40,49 +26,247 @@ class EmergencyservicesScreen extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
             ),
-          ),
-          Column(
-            children: [
-              SizedBox(
-                height: 100,
-              ),
-              Container(
-                height: 450,
-                width: 350,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)]),
-                child: Column(
+            child: Column(
+              children: [
+                Column(
                   children: [
-                    Text('Choose your emergency:'),
                     const SizedBox(
-                      height: 15,
+                      height: 30,
+                    ),
+                    Text(
+                      'Choose your emergency:',
+                      style: GoogleFonts.inriaSans(
+                          fontSize: 23,
+                          color: const Color.fromARGB(255, 140, 140, 140),
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 60,
                     ),
                     Row(
                       children: [
-                        Text('water services'),
+                        Text(
+                          'Water service',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
                       ],
-                    )
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Food services',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Sanitary services',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 28,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Fire department',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 31,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Police department',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 21,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Others',
+                          style: GoogleFonts.inriaSans(
+                              fontSize: 16.8,
+                              color: const Color.fromARGB(255, 166, 162, 162),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 111,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomRadioButton(
+                                label: 'Yes',
+                                onPressed: () {},
+                                isSelected: true,
+                              ),
+                              CustomRadioButton(
+                                label: 'No',
+                                onPressed: () {},
+                                isSelected: false,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(35),
+                      child: Container(
+                        height: 38,
+                        width: 300,
+                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                        child: ElevatedButton(
+                          child: const Text("Submit"),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              )
-            ],
-          )
+              ],
+            ),
+          ),
         ],
       )),
-    );
-  }
-
-  Container buildContainerBottomNav(IconData icon, {isSelected = false}) {
-    return Container(
-      decoration: BoxDecoration(
-          color: isSelected
-              ? const Color.fromARGB(255, 151, 200, 240)
-              : const Color.fromARGB(255, 2, 62, 138),
-          shape: BoxShape.circle),
-      height: 50,
-      width: 50,
-      child: Icon(icon, color: isSelected ? Colors.white : Colors.black),
     );
   }
 }
