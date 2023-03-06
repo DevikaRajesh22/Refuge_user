@@ -48,17 +48,17 @@ class AddScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 CustomRadioButton(
-                  label: 'Yes',
+                  label: 'Female',
                   onPressed: () {},
                   isSelected: true,
                 ),
                 CustomRadioButton(
-                  label: 'No',
+                  label: 'Male',
                   onPressed: () {},
                   isSelected: false,
                 ),
                 CustomRadioButton(
-                  label: 'No',
+                  label: 'Others',
                   onPressed: () {},
                   isSelected: false,
                 ),
