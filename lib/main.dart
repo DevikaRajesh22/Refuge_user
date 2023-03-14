@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:refuge_user/ui/screens/family_screen.dart';
 import 'package:refuge_user/ui/screens/home_screen.dart';
 import 'package:refuge_user/ui/screens/home_screen_sections/dashboard_section.dart';
+import 'package:refuge_user/ui/screens/splash_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
