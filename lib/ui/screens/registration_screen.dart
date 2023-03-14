@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../widgets/custom_radio_buttton.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});
@@ -9,43 +12,21 @@ class RegistrationScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Image.asset(
-              'assets/images/regi.png',
-              fit: BoxFit.fill,
-              width: MediaQuery.of(context).size.width,
-              height: 250,
+            const SizedBox(
+              height: 30,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Divider(
-                        color: Color.fromARGB(255, 96, 96, 96),
-                        thickness: 1,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text("Register"),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Divider(
-                        color: Color.fromARGB(255, 96, 96, 96),
-                        thickness: 1,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+            Text("Register",
+                style: GoogleFonts.inriaSans(
+                    fontSize: 45,
+                    color: const Color.fromARGB(255, 38, 57, 152))),
+            const SizedBox(
+              height: 20,
             ),
             const Text(
                 "Create your account . It's free and only takes a minute"),
+            const SizedBox(
+              height: 30,
+            ),
             Row(
               children: const [
                 Expanded(
@@ -68,6 +49,9 @@ class RegistrationScreen extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 25,
             ),
             Row(
               children: const [
@@ -92,12 +76,18 @@ class RegistrationScreen extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 20,
+            ),
             const TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Email',
                 hintText: 'mail@user.com',
               ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             const TextField(
               obscureText: true,
@@ -106,6 +96,9 @@ class RegistrationScreen extends StatelessWidget {
                   labelText: "Password",
                   hintText: "Enter Password"),
             ),
+            const SizedBox(
+              height: 20,
+            ),
             const TextField(
               obscureText: true,
               decoration: InputDecoration(
@@ -113,19 +106,23 @@ class RegistrationScreen extends StatelessWidget {
                   labelText: "Confirm Password",
                   hintText: "Enter Password"),
             ),
-            Row(
-              children: [
-                Container(
-                  width: 15,
-                  height: 15,
-                  color: const Color.fromARGB(255, 32, 118, 188),
-                ),
-                const Text('I accept  the terms of use & privacy '),
-              ],
+            const SizedBox(
+              height: 20,
+            ),
+            CustomRadioButton(
+              label: 'I accept the terms of use & privacy',
+              onPressed: () {},
+              isSelected: false,
+            ),
+            const SizedBox(
+              height: 20,
             ),
             ElevatedButton(
               child: const Text("Register"),
               onPressed: () {},
+            ),
+            const SizedBox(
+              height: 20,
             ),
             const Text('Already a user ? Login ')
           ],

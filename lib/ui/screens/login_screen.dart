@@ -24,24 +24,22 @@ class LoginScreen extends StatelessWidget {
         ),
         child: Image.asset(
           'assets/images/regi1.png',
+          fit: BoxFit.fill,
+          width: MediaQuery.of(context).size.width,
           height: 250,
-          width: 400,
-          alignment: Alignment.center,
         ),
       ),
       const SizedBox(
         height: 20,
       ),
       const Text("REFUGE", style: TextStyle(color: Colors.blue, fontSize: 24)),
-      // ignore: prefer_const_constructors
-      Padding(
-          padding: const EdgeInsets.all(15),
-          child: const TextField(
+      const Padding(
+          padding: EdgeInsets.all(15),
+          child: TextField(
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Email",
                   hintText: "mail@user.com"))),
-
       const Padding(
         padding: EdgeInsets.all(15),
         child: TextField(
@@ -64,7 +62,6 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
-
       const Padding(padding: EdgeInsets.all(1)),
       Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,7 +77,6 @@ class LoginScreen extends StatelessWidget {
       const SizedBox(
         height: 50,
       ),
-
       const SizedBox(
         height: 10,
       ),
