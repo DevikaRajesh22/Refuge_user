@@ -38,6 +38,8 @@ dependencies:
   line_icons: ^2.0.1
   google_fonts: ^4.0.1
   accordion: ^2.5.1
+  flutter_bloc: ^8.1.2
+  supabase_flutter: ^1.5.0
 
 dev_dependencies:
   flutter_test:
@@ -83,8 +85,9 @@ flutter:
     - assets/images/job3.png
     - assets/images/job4.png
     - assets/images/job5.png
-    - assets/images/family.png
+    - assets/images/fam1.png
     - assets/images/face.png
+    - assets/images/dashboard.png
     
 
 

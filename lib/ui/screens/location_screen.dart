@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:refuge_user/widgets/custom_button.dart';
+import 'package:refuge_user/ui/widgets/custom_button.dart';
 
 class LocationScreen extends StatelessWidget {
   const LocationScreen({super.key});

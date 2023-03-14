@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../widgets/custom_radio_buttton.dart';
+import '../widgets/custom_radio_buttton.dart';
 
 class EmergencyServiceScreen extends StatelessWidget {
   const EmergencyServiceScreen({super.key});

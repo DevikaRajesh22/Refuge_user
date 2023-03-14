@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:refuge_user/widgets/custom_button.dart';
+import 'package:refuge_user/ui/widgets/custom_button.dart';
 
-import '../../widgets/custom_radio_buttton.dart';
+import '../widgets/custom_radio_buttton.dart';
 
 class AddScreen extends StatelessWidget {
   const AddScreen({super.key});

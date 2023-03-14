@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../widgets/custom_radio_buttton.dart';
+import '../widgets/custom_radio_buttton.dart';
 
 class ReporthazardScreen extends StatelessWidget {
   const ReporthazardScreen({super.key});
@@ -256,7 +256,6 @@ class ReporthazardScreen extends StatelessWidget {
                         width: 300,
                         padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                         child: ElevatedButton(
-                          child: const Text("Submit"),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
@@ -266,6 +265,7 @@ class ReporthazardScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {},
+                          child: const Text("Submit"),
                         ),
                       ),
                     ),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:refuge_user/ui/widgets/custom_button.dart';
 
-class DashboardSection extends StatefulWidget {
-  const DashboardSection({super.key});
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
 
   @override
-  State<DashboardSection> createState() => _DashboardSectionState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardSectionState extends State<DashboardSection> {
+class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,13 +30,14 @@ class _DashboardSectionState extends State<DashboardSection> {
                   height: 10,
                 ),
                 Image.asset(
-                  'assets/images/dashboard.png',
-                  height: 180,
-                  width: 300,
+                  'assets/images/hand.png',
+                  height: 60,
+                  width: 60,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
+                const Text('Care Team')
               ],
             ),
           ),
