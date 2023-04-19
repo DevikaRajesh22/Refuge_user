@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:refuge_user/ui/screens/complaints_screen.dart';
+import 'package:refuge_user/ui/screens/login_screen.dart';
+import 'package:refuge_user/ui/screens/registration_screen.dart';
+import 'package:refuge_user/ui/screens/suggestions_screen.dart';
+import 'package:refuge_user/ui/widgets/custom_alert_dialog.dart';
 import 'package:refuge_user/ui/widgets/custom_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileSection extends StatelessWidget {
   const ProfileSection({super.key});
@@ -20,47 +26,91 @@ class ProfileSection extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           const Divider(height: 1),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                CustomSettingsButton(
-                  onPressed: () {},
-                  label: 'Edit Profile',
-                  iconData: Icons.person,
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    CustomSettingsButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterScreen(
+                              editMode: true,
+                            ),
+                          ),
+                        );
+                      },
+                      label: 'Edit Profile',
+                      iconData: Icons.person,
+                    ),
+                    const SizedBox(height: 10),
+                    CustomSettingsButton(
+                      onPressed: () {},
+                      label: 'Change Password',
+                      iconData: Icons.lock,
+                    ),
+                    const SizedBox(height: 10),
+                    CustomSettingsButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const ComplaintsScreen(),
+                          ),
+                        );
+                      },
+                      label: 'Complaints',
+                      iconData: Icons.info,
+                    ),
+                    const SizedBox(height: 10),
+                    CustomSettingsButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const SuggestionsScreen(),
+                          ),
+                        );
+                      },
+                      label: 'Suggestions',
+                      iconData: Icons.offline_bolt_rounded,
+                    ),
+                    const SizedBox(height: 10),
+                    CustomSettingsButton(
+                      onPressed: () {
+                        launchUrl(Uri.parse('tel:10000'));
+                      },
+                      label: 'Call Hotline',
+                      iconData: Icons.call,
+                      color: Colors.orange,
+                    ),
+                    const SizedBox(height: 10),
+                    CustomSettingsButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomAlertDialog(
+                            title: 'Logout?',
+                            message: 'Are you sure you want to logout?',
+                            primaryButtonLabel: 'Logout',
+                            primaryOnPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginScreen(),
+                                ),
+                              );
+                            },
+                            secondaryButtonLabel: 'No',
+                          ),
+                        );
+                      },
+                      label: 'Logout',
+                      iconData: Icons.logout,
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 10),
-                CustomSettingsButton(
-                  onPressed: () {},
-                  label: 'Change Password',
-                  iconData: Icons.lock,
-                ),
-                const SizedBox(height: 10),
-                CustomSettingsButton(
-                  onPressed: () {},
-                  label: 'Complaints',
-                  iconData: Icons.info,
-                ),
-                const SizedBox(height: 10),
-                CustomSettingsButton(
-                  onPressed: () {},
-                  label: 'Suggestions',
-                  iconData: Icons.offline_bolt_rounded,
-                ),
-                const SizedBox(height: 10),
-                CustomSettingsButton(
-                  onPressed: () {},
-                  label: 'Call Hotline',
-                  iconData: Icons.call,
-                  color: Colors.orange,
-                ),
-                const SizedBox(height: 10),
-                CustomSettingsButton(
-                  onPressed: () {},
-                  label: 'Logout',
-                  iconData: Icons.logout,
-                ),
-              ],
+              ),
             ),
           )
         ],

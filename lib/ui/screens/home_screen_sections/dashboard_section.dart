@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:refuge_user/ui/screens/emergency_screen.dart';
+import 'package:refuge_user/ui/screens/hazards_screen.dart';
 import 'package:refuge_user/ui/widgets/custom_button.dart';
 
 class DashboardSection extends StatefulWidget {
@@ -59,7 +61,13 @@ class _DashboardSectionState extends State<DashboardSection> {
               color: Colors.red[50],
               child: InkWell(
                 borderRadius: BorderRadius.circular(30),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const HazardScreen(),
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
@@ -106,7 +114,13 @@ class _DashboardSectionState extends State<DashboardSection> {
               color: Colors.orange[50],
               child: InkWell(
                 borderRadius: BorderRadius.circular(30),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const EmergencyScreen(),
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:refuge_user/ui/screens/complaints_screen.dart';
+import 'package:refuge_user/ui/screens/emergency_screen.dart';
+import 'package:refuge_user/ui/screens/hazards_screen.dart';
 import 'package:refuge_user/ui/screens/home_screen.dart';
 import 'package:refuge_user/ui/screens/home_screen_sections/dashboard_section.dart';
 import 'package:refuge_user/ui/screens/login_screen.dart';
 import 'package:refuge_user/ui/screens/registration_screen.dart';
 import 'package:refuge_user/ui/screens/splash_screen.dart';
+import 'package:refuge_user/ui/screens/suggestions_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -39,7 +43,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const RegisterScreen(),
+      home: const SplashScreen(),
     );
   }
 }

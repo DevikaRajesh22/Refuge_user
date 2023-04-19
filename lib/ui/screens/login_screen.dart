@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:refuge_user/ui/screens/home_screen.dart';
+import 'package:refuge_user/ui/screens/registration_screen.dart';
 
 import '../widgets/custom_button.dart';
 
@@ -94,7 +96,13 @@ class LoginScreen extends StatelessWidget {
                 height: 10,
               ),
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                  );
+                },
                 label: 'LOGIN',
               ),
               const SizedBox(
@@ -111,7 +119,13 @@ class LoginScreen extends StatelessWidget {
                 height: 10,
               ),
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterScreen(),
+                    ),
+                  );
+                },
                 label: 'REGISTER',
                 color: Colors.blue[50],
                 labelColor: Colors.blue[900],
