@@ -12,121 +12,142 @@ class _DashboardSectionState extends State<DashboardSection> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height / 4,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
+      child: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          children: [
+            Material(
+              borderRadius: BorderRadius.circular(30),
+              elevation: 0,
+              color: Colors.blue[50],
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      const Icon(
+                        Icons.groups,
+                        size: 50,
+                        color: Colors.blue,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Stay Calm',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        'Dont worry, help is on the way. Add you family mambers to be found by Govt. or NGOs, Request emergency services or Report Hazard. Stay informed with our notifications.',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.black,
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
-                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)]),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 10,
+              ),
+            ),
+            const Expanded(child: Divider()),
+            Material(
+              borderRadius: BorderRadius.circular(30),
+              elevation: 0,
+              color: Colors.red[50],
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      const Icon(
+                        Icons.warning,
+                        size: 50,
+                        color: Colors.red,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Report Hazard',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        'If you are in danger, please report a hazard to get assistance immediately.',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.black,
+                            ),
+                      ),
+                      const SizedBox(height: 15),
+                      Text(
+                        'VIEW AND REPORT HAZARD',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
-                Image.asset(
-                  'assets/images/dashboard.png',
-                  height: 180,
-                  width: 300,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Material(
+              borderRadius: BorderRadius.circular(30),
+              elevation: 0,
+              color: Colors.orange[50],
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      const Icon(
+                        Icons.report,
+                        size: 50,
+                        color: Colors.orange,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Emergency Service',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        'If you are in need of any emeregency service, please request an emergency service now.',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.black,
+                            ),
+                      ),
+                      const SizedBox(height: 15),
+                      Text(
+                        'VIEW AND REQUEST SERVICE',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-              ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              right: 30,
-            ),
-            child: CustomButton(
-              label: 'Location',
-              onTap: () {
-                Navigator.of(context).pushNamed('/location');
-              },
-              isNormalButton: true,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              right: 30,
-            ),
-            child: CustomButton(
-              label: 'Emergency',
-              onTap: () {},
-              isNormalButton: true,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              right: 30,
-            ),
-            child: CustomButton(
-              label: 'Family',
-              onTap: () {},
-              isNormalButton: true,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              right: 30,
-            ),
-            child: CustomButton(
-              label: 'Job',
-              onTap: () {},
-              isNormalButton: true,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              right: 30,
-            ),
-            child: CustomButton(
-              label: 'Class',
-              onTap: () {},
-              isNormalButton: true,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              right: 30,
-            ),
-            child: CustomButton(
-              label: 'Review',
-              onTap: () {},
-              isNormalButton: true,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

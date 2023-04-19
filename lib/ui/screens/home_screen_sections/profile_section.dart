@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:refuge_user/ui/widgets/custom_card.dart';
 
 class ProfileSection extends StatelessWidget {
   const ProfileSection({super.key});
@@ -7,110 +8,114 @@ class ProfileSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Stack(
-        alignment: Alignment.bottomCenter,
+      child: Column(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            color: const Color.fromARGB(225, 2, 62, 138),
+          const SizedBox(height: 20),
+          Text(
+            'Settings',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
-          Container(
-            height: 650,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          const SizedBox(height: 20),
+          const Divider(height: 1),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                CustomSettingsButton(
+                  onPressed: () {},
+                  label: 'Edit Profile',
+                  iconData: Icons.person,
+                ),
+                const SizedBox(height: 10),
+                CustomSettingsButton(
+                  onPressed: () {},
+                  label: 'Change Password',
+                  iconData: Icons.lock,
+                ),
+                const SizedBox(height: 10),
+                CustomSettingsButton(
+                  onPressed: () {},
+                  label: 'Complaints',
+                  iconData: Icons.info,
+                ),
+                const SizedBox(height: 10),
+                CustomSettingsButton(
+                  onPressed: () {},
+                  label: 'Suggestions',
+                  iconData: Icons.offline_bolt_rounded,
+                ),
+                const SizedBox(height: 10),
+                CustomSettingsButton(
+                  onPressed: () {},
+                  label: 'Call Hotline',
+                  iconData: Icons.call,
+                  color: Colors.orange,
+                ),
+                const SizedBox(height: 10),
+                CustomSettingsButton(
+                  onPressed: () {},
+                  label: 'Logout',
+                  iconData: Icons.logout,
+                ),
+              ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Image.asset(
-                    'assets/images/face.png',
-                    alignment: Alignment.topCenter,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'Mark Alexander',
-                    style: GoogleFonts.inriaSans(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Manchester ,UK',
-                    style: GoogleFonts.inriaSans(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 77, 77, 77)),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    'Camp Location : Yida, South Sudan',
-                    style: GoogleFonts.inriaSans(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Camp Id: 978',
-                    style: GoogleFonts.inriaSans(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Refugee Id: 586392',
-                    style: GoogleFonts.inriaSans(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Family Members: 5',
-                    style: GoogleFonts.inriaSans(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(35),
-                    child: Container(
-                      height: 38,
-                      width: 300,
-                      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      child: ElevatedButton(
-                        child: const Text("Logout"),
-                        onPressed: () {},
-                      ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class CustomSettingsButton extends StatelessWidget {
+  final Function() onPressed;
+  final IconData iconData;
+  final String label;
+  final Color? color;
+  const CustomSettingsButton({
+    super.key,
+    required this.onPressed,
+    required this.iconData,
+    required this.label,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomCard(
+      onPressed: onPressed,
+      color: color?.withOpacity(.1),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 15,
+        ),
+        child: Row(
+          children: [
+            Icon(
+              iconData,
+              size: 30,
+              color: color ?? Colors.blue[900],
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                label,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ),
-                ],
               ),
             ),
-          ),
-        ],
+            const Icon(
+              Icons.arrow_forward,
+              size: 20,
+              color: Colors.black26,
+            ),
+          ],
+        ),
       ),
     );
   }
