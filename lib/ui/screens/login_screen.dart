@@ -3,86 +3,126 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../widgets/custom_button.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-            body: SafeArea(
-                child: Column(children: [
-      Container(
-        height: 250,
-        width: 500,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30)),
-          boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 12)],
-        ),
-        child: Image.asset(
-          'assets/images/regi1.png',
-          fit: BoxFit.fill,
-          width: MediaQuery.of(context).size.width,
-          height: 250,
-        ),
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      const Text("REFUGE", style: TextStyle(color: Colors.blue, fontSize: 24)),
-      const Padding(
-          padding: EdgeInsets.all(15),
-          child: TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Email",
-                  hintText: "mail@user.com"))),
-      const Padding(
-        padding: EdgeInsets.all(15),
-        child: TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Password",
-              hintText: "Enter Password"),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(35),
-        child: Container(
-          height: 38,
-          width: 300,
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-          child: ElevatedButton(
-            child: const Text("Login"),
-            onPressed: () {},
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const Expanded(
+                child: SizedBox(),
+              ),
+              Material(
+                borderRadius: BorderRadius.circular(30),
+                elevation: 0,
+                color: Colors.blue[50],
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        const Icon(
+                          Icons.groups,
+                          size: 50,
+                          color: Colors.blue,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          'Stay Calm',
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          'Dont worry, help is on the way. Add you family mambers to be found by Govt. or NGOs, Request emergency services or Report Hazard. Stay informed with our notifications.',
+                          textAlign: TextAlign.center,
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black,
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const Expanded(
+                child: SizedBox(),
+              ),
+              Text(
+                'Login',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+              ),
+              const SizedBox(height: 20),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: "mail@user.com",
+                  prefixIcon: Icon(
+                    Icons.mail,
+                    size: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Enter Password",
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    size: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomButton(
+                onPressed: () {},
+                label: 'LOGIN',
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Don’t have an account?",
+                style: GoogleFonts.inriaSans(
+                  fontSize: 16,
+                  color: Colors.black54,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomButton(
+                onPressed: () {},
+                label: 'REGISTER',
+                color: Colors.blue[50],
+                labelColor: Colors.blue[900],
+              ),
+              const Expanded(
+                child: SizedBox(),
+              ),
+            ],
           ),
         ),
       ),
-      const Padding(padding: EdgeInsets.all(1)),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text("Forgot your login details ? "),
-          Text(
-            " Get help signing in . ",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-      const SizedBox(
-        height: 50,
-      ),
-      const SizedBox(
-        height: 10,
-      ),
-      Text("Don’t have an account?  Sign Up",
-          style: GoogleFonts.inriaSans(
-              fontSize: 16, color: const Color.fromARGB(255, 75, 103, 243)))
-    ]))));
+    );
   }
 }

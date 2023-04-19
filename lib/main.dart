@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:refuge_user/ui/screens/blooddonation_screen.dart';
-import 'package:refuge_user/ui/screens/careteam_screen.dart';
-import 'package:refuge_user/ui/screens/family_screen.dart';
 import 'package:refuge_user/ui/screens/home_screen.dart';
 import 'package:refuge_user/ui/screens/home_screen_sections/dashboard_section.dart';
-import 'package:refuge_user/ui/screens/location_screen.dart';
 import 'package:refuge_user/ui/screens/login_screen.dart';
 import 'package:refuge_user/ui/screens/registration_screen.dart';
 import 'package:refuge_user/ui/screens/splash_screen.dart';
@@ -24,9 +20,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      theme: ThemeData.light().copyWith(
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.blue[50],
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 15,
+          ),
+          iconColor: Colors.blue[900],
+          prefixIconColor: Colors.blue[900],
+          suffixIconColor: Colors.blue[900],
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+      home: const RegisterScreen(),
     );
   }
 }

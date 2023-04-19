@@ -1,131 +1,139 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../widgets/custom_radio_buttton.dart';
+import '../widgets/custom_button.dart';
 
-class RegistrationScreen extends StatelessWidget {
-  const RegistrationScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Text("Register",
-                style: GoogleFonts.inriaSans(
-                    fontSize: 45,
-                    color: const Color.fromARGB(255, 38, 57, 152))),
-            const SizedBox(
-              height: 20,
-            ),
-            const Text(
-                "Create your account . It's free and only takes a minute"),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: const [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'First name',
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Last name',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              children: const [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Age',
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Gender',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Email',
-                hintText: 'mail@user.com',
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const Expanded(
+                child: SizedBox(),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Password",
-                  hintText: "Enter Password"),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Confirm Password",
-                  hintText: "Enter Password"),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            CustomRadioButton(
-              label: 'I accept the terms of use & privacy',
-              onPressed: () {},
-              isSelected: false,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              child: const Text("Register"),
-              onPressed: () {},
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Text('Already a user ? Login ')
-          ],
+              Material(
+                borderRadius: BorderRadius.circular(30),
+                elevation: 0,
+                color: Colors.blue[50],
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        const Icon(
+                          Icons.groups,
+                          size: 50,
+                          color: Colors.blue,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          'Stay Calm',
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          'Dont worry, help is on the way. Add you family mambers to be found by Govt. or NGOs, Request emergency services or Report Hazard. Stay informed with our notifications.',
+                          textAlign: TextAlign.center,
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black,
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const Expanded(
+                child: SizedBox(),
+              ),
+              Text(
+                'Register',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+              ),
+              const SizedBox(height: 20),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: "mail@user.com",
+                  prefixIcon: Icon(
+                    Icons.mail,
+                    size: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Enter Password",
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    size: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Confirm Password",
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    size: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomButton(
+                onPressed: () {},
+                label: 'REGISTER',
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Already have an account?",
+                style: GoogleFonts.inriaSans(
+                  fontSize: 16,
+                  color: Colors.black54,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomButton(
+                onPressed: () {},
+                label: 'LOGIN',
+                color: Colors.blue[50],
+                labelColor: Colors.blue[900],
+              ),
+              const Expanded(
+                child: SizedBox(),
+              ),
+            ],
+          ),
         ),
       ),
     );
