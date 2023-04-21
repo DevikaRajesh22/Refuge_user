@@ -6,7 +6,10 @@ import 'package:refuge_user/ui/screens/registration_screen.dart';
 import 'package:refuge_user/ui/screens/suggestions_screen.dart';
 import 'package:refuge_user/ui/widgets/custom_alert_dialog.dart';
 import 'package:refuge_user/ui/widgets/custom_card.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../widgets/change_password.dart';
 
 class ProfileSection extends StatelessWidget {
   const ProfileSection({super.key});
@@ -32,20 +35,25 @@ class ProfileSection extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
+                    // CustomSettingsButton(
+                    //   onPressed: () {
+                    //     Navigator.of(context).push(
+                    //       MaterialPageRoute(
+                    //         builder: (context) => const RegisterScreen(),
+                    //       ),
+                    //     );
+                    //   },
+                    //   label: 'Edit Profile',
+                    //   iconData: Icons.person,
+                    // ),
+                    // const SizedBox(height: 10),
                     CustomSettingsButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterScreen(),
-                          ),
+                        showDialog(
+                          context: context,
+                          builder: (context) => const ChangePasswordDialog(),
                         );
                       },
-                      label: 'Edit Profile',
-                      iconData: Icons.person,
-                    ),
-                    const SizedBox(height: 10),
-                    CustomSettingsButton(
-                      onPressed: () {},
                       label: 'Change Password',
                       iconData: Icons.lock,
                     ),
@@ -88,18 +96,19 @@ class ProfileSection extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (context) => CustomAlertDialog(
-                            title: 'Logout?',
+                            title: 'Logout',
                             message: 'Are you sure you want to logout?',
                             primaryButtonLabel: 'Logout',
-                            primaryOnPressed: () {
-                              Navigator.push(
-                                context,
+                            primaryOnPressed: () async {
+                              await Supabase.instance.client.auth.signOut();
+                              // ignore: use_build_context_synchronously
+                              Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) => const LoginScreen(),
                                 ),
                               );
                             },
-                            secondaryButtonLabel: 'No',
+                            secondaryButtonLabel: 'Cancel',
                           ),
                         );
                       },

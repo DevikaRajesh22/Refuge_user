@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:refuge_user/ui/screens/home_screen.dart';
 import 'package:refuge_user/ui/screens/registration_screen.dart';
 import 'package:refuge_user/util/value_validators.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../blocs/auth/sign_in/sign_in_bloc.dart';
 import '../widgets/custom_alert_dialog.dart';
@@ -34,6 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     _emailFocusNode.addListener(_onFocusChanged);
     _passwordFocusNode.addListener(_onFocusChanged);
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (Supabase.instance.client.auth.currentUser != null) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+        );
+      }
+    });
   }
 
   @override

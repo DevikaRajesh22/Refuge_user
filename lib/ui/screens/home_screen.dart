@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:refuge_user/ui/screens/home_screen_sections/dashboard_section.dart';
 import 'package:refuge_user/ui/screens/home_screen_sections/family_section.dart';
 import 'package:refuge_user/ui/screens/home_screen_sections/notification_section.dart';
 import 'package:refuge_user/ui/screens/home_screen_sections/profile_section.dart';
 import 'package:refuge_user/ui/widgets/custom_dropdown.dart';
+import 'package:refuge_user/ui/widgets/disaster_selector.dart';
+import 'package:refuge_user/util/value_validators.dart';
 
+import '../../blocs/manage_members/manage_members_bloc.dart';
 import '../widgets/custom_alert_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  final ManageMembersBloc manageMembersBloc = ManageMembersBloc();
   late TabController tabController = TabController(
     length: 4,
     vsync: this,
@@ -24,22 +30,27 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TabBarView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: tabController,
-        children: const [
-          NotificationSection(),
-          DashboardSection(),
-          FamilySection(),
-          ProfileSection(),
-        ],
+      body: BlocProvider<ManageMembersBloc>.value(
+        value: manageMembersBloc,
+        child: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: tabController,
+          children: const [
+            NotificationSection(),
+            DashboardSection(),
+            FamilySection(),
+            ProfileSection(),
+          ],
+        ),
       ),
       floatingActionButton: tabController.index == 2
           ? FloatingActionButton.extended(
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (context) => const AddMemberForm(),
+                  builder: (context) => AddMemberForm(
+                    manageMembersBloc: manageMembersBloc,
+                  ),
                 );
               },
               label: const Text(
@@ -70,87 +81,161 @@ class _HomeScreenState extends State<HomeScreen>
   }
 }
 
-class AddMemberForm extends StatelessWidget {
+class AddMemberForm extends StatefulWidget {
+  final ManageMembersBloc manageMembersBloc;
+  final dynamic memberDetails;
   const AddMemberForm({
     super.key,
+    required this.manageMembersBloc,
+    this.memberDetails,
   });
+
+  @override
+  State<AddMemberForm> createState() => _AddMemberFormState();
+}
+
+class _AddMemberFormState extends State<AddMemberForm> {
+  final TextEditingController _nameC = TextEditingController();
+  final TextEditingController _dateC = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String gender = 'male';
+  int disasterId = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.memberDetails != null) {
+      _nameC.text = widget.memberDetails['name'];
+      _dateC.text = DateFormat('yyyy-MM-dd')
+          .format(DateTime.parse(widget.memberDetails['dob']));
+      gender = widget.memberDetails['gender'];
+      disasterId = widget.memberDetails['disaster_id'];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog(
       title: 'Add Member',
       message: 'Enter the following details to add a family member.',
-      content: Column(
-        children: [
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Name',
-              prefixIcon: Icon(Icons.person),
+      content: Form(
+        key: formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Column(
+          children: [
+            TextFormField(
+              controller: _nameC,
+              validator: alphaNumericValidator,
+              decoration: const InputDecoration(
+                hintText: 'Name',
+                prefixIcon: Icon(Icons.person),
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          TextFormField(
-            readOnly: true,
-            onTap: () {
-              showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(1900),
-                lastDate: DateTime.now(),
-              );
-            },
-            decoration: const InputDecoration(
-              hintText: 'Date of Birth',
-              prefixIcon: Icon(Icons.date_range),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: _dateC,
+              validator: (value) {
+                if (value != null && value.isNotEmpty) {
+                  return null;
+                } else {
+                  return 'Select Date of Birth';
+                }
+              },
+              readOnly: true,
+              onTap: () async {
+                DateTime? date = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime.now(),
+                );
+
+                if (date != null) {
+                  _dateC.text = DateFormat('yyyy-MM-dd').format(date);
+                  setState(() {});
+                }
+              },
+              decoration: const InputDecoration(
+                hintText: 'Date of Birth',
+                prefixIcon: Icon(Icons.date_range),
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          CustomDropdownButton(
-            label: 'Gender',
-            leadingIcon: Icons.people,
-            items: const [
-              {
-                'name': 'Male',
-                'value': 'male',
+            const SizedBox(height: 10),
+            CustomDropdownButton(
+              label: gender,
+              leadingIcon: Icons.people,
+              items: const [
+                {
+                  'name': 'male',
+                  'value': 'male',
+                },
+                {
+                  'name': 'female',
+                  'value': 'female',
+                },
+                {
+                  'name': 'other',
+                  'value': 'other',
+                },
+              ],
+              onChange: (item) {
+                gender = item['value'];
               },
-              {
-                'name': 'Female',
-                'id': 'female',
-              },
-              {
-                'name': 'Other',
-                'id': 'other',
-              },
-            ],
-            onChange: (item) {},
-          ),
-          const SizedBox(height: 10),
-          CustomDropdownButton(
-            label: 'Disaster',
-            leadingIcon: Icons.warning,
-            items: const [
-              {
-                'name': 'name',
-                'id': 1,
-              },
-              {
-                'name': 'name',
-                'id': 2,
-              },
-              {
-                'name': 'name',
-                'id': 3,
-              },
-              {
-                'name': 'name',
-                'id': 4,
-              },
-            ],
-            onChange: (item) {},
-          )
-        ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: DisastersSelector(
+                    selecteDisaster: disasterId,
+                    onSelect: (value) {
+                      disasterId = value;
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       primaryButtonLabel: 'Add',
+      primaryOnPressed: () {
+        if (formKey.currentState!.validate()) {
+          if (disasterId != 0) {
+            if (widget.memberDetails != null) {
+              widget.manageMembersBloc.add(
+                EditMemberEvent(
+                  memberId: widget.memberDetails['id'],
+                  name: _nameC.text.trim(),
+                  dob: _dateC.text.trim(),
+                  gender: gender,
+                  disasterId: disasterId,
+                ),
+              );
+            } else {
+              widget.manageMembersBloc.add(
+                AddMemberEvent(
+                  name: _nameC.text.trim(),
+                  dob: _dateC.text.trim(),
+                  gender: gender,
+                  disasterId: disasterId,
+                ),
+              );
+            }
+
+            Navigator.pop(context);
+          } else {
+            showDialog(
+              context: context,
+              builder: (context) => const CustomAlertDialog(
+                title: 'Select Disaster',
+                message: 'Please select disaster to continue',
+                primaryButtonLabel: 'Ok',
+              ),
+            );
+          }
+        }
+      },
       secondaryButtonLabel: 'Cancel',
     );
   }
