@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:refuge_user/ui/widgets/custom_select_box.dart';
 
 import '../../blocs/manage_disasters/manage_disasters_bloc.dart';
+import '../../blocs/manage_members/manage_members_bloc.dart';
 import 'custom_alert_dialog.dart';
 import 'custom_card.dart';
-import 'custom_select_box.dart';
 
-class DisastersSelector extends StatefulWidget {
+class MembersSelector extends StatefulWidget {
   final Function(int) onSelect;
   final String label;
-  const DisastersSelector({
+  const MembersSelector({
     super.key,
     required this.onSelect,
-    required this.label,
+    this.label = 'Select Member',
   });
 
   @override
-  State<DisastersSelector> createState() => _DisastersSelectorState();
+  State<MembersSelector> createState() => _MembersSelectorState();
 }
 
-class _DisastersSelectorState extends State<DisastersSelector> {
-  final ManageDisastersBloc departmentBloc = ManageDisastersBloc();
+class _MembersSelectorState extends State<MembersSelector> {
+  final ManageMembersBloc manageMembersBloc = ManageMembersBloc();
 
   @override
   void initState() {
-    departmentBloc.add(GetAllDisasterEvent());
+    manageMembersBloc.add(GetAllMembersEvent());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-      child: BlocProvider<ManageDisastersBloc>.value(
-        value: departmentBloc,
-        child: BlocConsumer<ManageDisastersBloc, ManageDisastersState>(
+      child: BlocProvider<ManageMembersBloc>.value(
+        value: manageMembersBloc,
+        child: BlocConsumer<ManageMembersBloc, ManageMembersState>(
           listener: (context, state) {
-            if (state is ManageDisastersFailureState) {
+            if (state is ManageMembersFailureState) {
               showDialog(
                 context: context,
                 builder: (context) => CustomAlertDialog(
@@ -43,7 +44,7 @@ class _DisastersSelectorState extends State<DisastersSelector> {
                   message: state.message,
                   primaryButtonLabel: 'Retry',
                   primaryOnPressed: () {
-                    departmentBloc.add(GetAllDisasterEvent());
+                    manageMembersBloc.add(GetAllMembersEvent());
                     Navigator.pop(context);
                   },
                 ),
@@ -51,14 +52,14 @@ class _DisastersSelectorState extends State<DisastersSelector> {
             }
           },
           builder: (context, state) {
-            if (state is ManageDisastersSuccessState) {
+            if (state is ManageMembersSuccessState) {
               return CustomSelectBox(
-                iconData: Icons.landscape,
+                iconData: Icons.person,
                 items: List<CustomSelectBoxItem>.generate(
-                  state.disasters.length,
+                  state.members.length,
                   (index) => CustomSelectBoxItem(
-                    value: state.disasters[index]['id'],
-                    label: state.disasters[index]['name'],
+                    value: state.members[index]['id'],
+                    label: state.members[index]['name'],
                   ),
                 ),
                 label: widget.label,
@@ -66,7 +67,7 @@ class _DisastersSelectorState extends State<DisastersSelector> {
                   widget.onSelect(selected != null ? selected.value : 0);
                 },
               );
-            } else if (state is ManageDisastersFailureState) {
+            } else if (state is ManageMembersFailureState) {
               return const SizedBox();
             } else {
               return const SizedBox(

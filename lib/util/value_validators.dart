@@ -2,7 +2,7 @@ String? alphaNumericValidator(String? value) {
   if (value == null || value.isEmpty) {
     return 'Please enter some text';
   }
-  final RegExp nameExp = RegExp(r'^[a-zA-Z0-9 ]+$');
+  final RegExp nameExp = RegExp(r'^[a-zA-Z0-9,\n ]+$');
   if (!nameExp.hasMatch(value)) {
     return 'Please enter only alphanumeric characters';
   }

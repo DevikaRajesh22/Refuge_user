@@ -6,6 +6,7 @@ import 'package:refuge_user/ui/screens/home_screen_sections/family_section.dart'
 import 'package:refuge_user/ui/screens/home_screen_sections/notification_section.dart';
 import 'package:refuge_user/ui/screens/home_screen_sections/profile_section.dart';
 import 'package:refuge_user/ui/widgets/custom_dropdown.dart';
+import 'package:refuge_user/ui/widgets/custom_select_box.dart';
 import 'package:refuge_user/ui/widgets/disaster_selector.dart';
 import 'package:refuge_user/util/value_validators.dart';
 
@@ -100,6 +101,7 @@ class _AddMemberFormState extends State<AddMemberForm> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String gender = 'male';
   int disasterId = 0;
+  String disasterLabel = 'Select Disaster';
 
   @override
   void initState() {
@@ -110,14 +112,15 @@ class _AddMemberFormState extends State<AddMemberForm> {
           .format(DateTime.parse(widget.memberDetails['dob']));
       gender = widget.memberDetails['gender'];
       disasterId = widget.memberDetails['disaster_id'];
+      disasterLabel = widget.memberDetails['disaster']['name'];
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog(
-      title: 'Add Member',
-      message: 'Enter the following details to add a family member.',
+      title: 'Save Member',
+      message: 'Enter the following details to save family member.',
       content: Form(
         key: formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -161,33 +164,25 @@ class _AddMemberFormState extends State<AddMemberForm> {
               ),
             ),
             const SizedBox(height: 10),
-            CustomDropdownButton(
-              label: gender,
-              leadingIcon: Icons.people,
-              items: const [
-                {
-                  'name': 'male',
-                  'value': 'male',
-                },
-                {
-                  'name': 'female',
-                  'value': 'female',
-                },
-                {
-                  'name': 'other',
-                  'value': 'other',
-                },
+            CustomSelectBox(
+              items: [
+                CustomSelectBoxItem(label: 'Male', value: 'male'),
+                CustomSelectBoxItem(label: 'Female', value: 'female'),
+                CustomSelectBoxItem(label: 'Other', value: 'other'),
               ],
-              onChange: (item) {
-                gender = item['value'];
+              label: gender,
+              onChange: (value) {
+                gender = value != null ? value.value : 'male';
+                setState(() {});
               },
+              iconData: Icons.people,
             ),
             const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
                   child: DisastersSelector(
-                    selecteDisaster: disasterId,
+                    label: disasterLabel,
                     onSelect: (value) {
                       disasterId = value;
                     },
@@ -198,7 +193,7 @@ class _AddMemberFormState extends State<AddMemberForm> {
           ],
         ),
       ),
-      primaryButtonLabel: 'Add',
+      primaryButtonLabel: 'Save',
       primaryOnPressed: () {
         if (formKey.currentState!.validate()) {
           if (disasterId != 0) {
