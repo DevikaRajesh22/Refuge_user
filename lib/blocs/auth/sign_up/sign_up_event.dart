@@ -1,9 +1,12 @@
 part of 'sign_up_bloc.dart';
 
-class SignUpEvent {
+@immutable
+abstract class SignUpEvent {}
+
+class CreateUserEvent extends SignUpEvent {
   final String email, password;
 
-  SignUpEvent({
+  CreateUserEvent({
     required this.email,
     required this.password,
   });

@@ -1,4 +1,10 @@
 part of 'sign_in_bloc.dart';
 
-@immutable
-abstract class SignInEvent {}
+class SignInEvent {
+  final String email, password;
+
+  SignInEvent({
+    required this.email,
+    required this.password,
+  });
+}

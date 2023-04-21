@@ -36,9 +36,7 @@ class ProfileSection extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const RegisterScreen(
-                              editMode: true,
-                            ),
+                            builder: (context) => const RegisterScreen(),
                           ),
                         );
                       },

@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
+import 'package:logger/logger.dart';
 import 'package:meta/meta.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -12,17 +11,31 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpEvent>((event, emit) async {
       emit(SignUpLoadingState());
 
-      try {
-        //supabase code
-        await Supabase.instance.client.auth.signUp(
-          email: event.email,
-          password: event.password,
-        );
+      SupabaseClient supabaseClient = Supabase.instance.client;
 
-        emit(SignUpSuccessState());
+      try {
+        if (event is CreateUserEvent) {
+          UserResponse res = await supabaseClient.auth.admin.createUser(
+            AdminUserAttributes(
+              email: event.email,
+              password: event.password,
+              emailConfirm: true,
+            ),
+          );
+
+          if (res.user != null) {
+            await supabaseClient.auth.signInWithPassword(
+              email: event.email,
+              password: event.password,
+            );
+            emit(SignUpSuccessState());
+          } else {
+            emit(SignUpFailureState());
+          }
+        }
       } catch (e, s) {
-        log('$e\n$s');
-        emit(SignUpFailureState());
+        Logger().e('$e\n$s');
+        emit(SignUpFailureState(message: e.toString()));
       }
     });
   }

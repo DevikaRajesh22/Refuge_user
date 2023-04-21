@@ -6,12 +6,14 @@ class CustomButton extends StatelessWidget {
   final Function() onPressed;
   final String label;
   final Color? color, labelColor;
+  final bool isLoading;
   const CustomButton({
     super.key,
     required this.onPressed,
     required this.label,
     this.color,
     this.labelColor,
+    this.isLoading = false,
   });
 
   @override
@@ -27,13 +29,21 @@ class CustomButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              label,
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: labelColor ?? Colors.white,
+            isLoading
+                ? const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 1.5,
+                    ),
+                  )
+                : Text(
+                    label,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: labelColor ?? Colors.white,
+                        ),
                   ),
-            ),
           ],
         ),
       ),
