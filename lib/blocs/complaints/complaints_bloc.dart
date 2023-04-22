@@ -14,7 +14,13 @@ class ComplaintsBloc extends Bloc<ComplaintsEvent, ComplaintsState> {
       SupabaseQueryBuilder queryTable = supabaseClient.from('complaints');
       try {
         if (event is GetAllComplaintsEvent) {
-          List<dynamic> temp = await queryTable.select().order(
+          List<dynamic> temp = await queryTable
+              .select()
+              .eq(
+                'user_id',
+                supabaseClient.auth.currentUser!.id,
+              )
+              .order(
                 'created_at',
               );
 

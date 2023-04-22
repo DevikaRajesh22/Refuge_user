@@ -17,7 +17,13 @@ class ManageEmergencyServiceRequestsBloc extends Bloc<
           supabaseClient.from('emergency_service_requests');
       try {
         if (event is GetAllEmergencyServiceRequestsEvent) {
-          List<dynamic> temp = await queryTable.select().order(
+          List<dynamic> temp = await queryTable
+              .select()
+              .eq(
+                'user_id',
+                supabaseClient.auth.currentUser!.id,
+              )
+              .order(
                 'created_at',
               );
 

@@ -14,7 +14,13 @@ class ManageHazardsBloc extends Bloc<ManageHazardsEvent, ManageHazardsState> {
       SupabaseQueryBuilder queryTable = supabaseClient.from('hazard_reports');
       try {
         if (event is GetAllHazardsEvent) {
-          List<dynamic> temp = await queryTable.select().order(
+          List<dynamic> temp = await queryTable
+              .select()
+              .eq(
+                'user_id',
+                supabaseClient.auth.currentUser!.id,
+              )
+              .order(
                 'created_at',
               );
 

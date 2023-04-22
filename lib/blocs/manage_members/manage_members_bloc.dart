@@ -53,6 +53,7 @@ class ManageMembersBloc extends Bloc<ManageMembersEvent, ManageMembersState> {
           await queryTable.insert({
             'user_id': supabaseClient.auth.currentUser!.id,
             'name': event.name,
+            'phone': event.phone,
             'gender': event.gender,
             'dob': event.dob,
             'disaster_id': event.disasterId,
@@ -61,6 +62,7 @@ class ManageMembersBloc extends Bloc<ManageMembersEvent, ManageMembersState> {
         } else if (event is EditMemberEvent) {
           await queryTable.update({
             'name': event.name,
+            'phone': event.phone,
             'gender': event.gender,
             'dob': event.dob,
             'disaster_id': event.disasterId,

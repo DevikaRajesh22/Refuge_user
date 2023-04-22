@@ -10,11 +10,12 @@ class GetAllMembersEvent extends ManageMembersEvent {
 }
 
 class AddMemberEvent extends ManageMembersEvent {
-  final String name, gender, dob;
+  final String name, phone, gender, dob;
   final int disasterId;
 
   AddMemberEvent({
     required this.name,
+    required this.phone,
     required this.dob,
     required this.gender,
     required this.disasterId,
@@ -22,12 +23,13 @@ class AddMemberEvent extends ManageMembersEvent {
 }
 
 class EditMemberEvent extends ManageMembersEvent {
-  final String name, dob, gender;
+  final String name, phone, dob, gender;
   final int memberId, disasterId;
 
   EditMemberEvent({
     required this.memberId,
     required this.name,
+    required this.phone,
     required this.dob,
     required this.gender,
     required this.disasterId,

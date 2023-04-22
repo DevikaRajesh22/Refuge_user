@@ -137,6 +137,14 @@ class MemberItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
+                  memberDetails['phone'],
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const SizedBox(height: 5),
+                Text(
                   memberDetails['disaster']['name'],
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: Colors.black87,

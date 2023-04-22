@@ -97,6 +97,7 @@ class AddMemberForm extends StatefulWidget {
 
 class _AddMemberFormState extends State<AddMemberForm> {
   final TextEditingController _nameC = TextEditingController();
+  final TextEditingController _phoneC = TextEditingController();
   final TextEditingController _dateC = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String gender = 'male';
@@ -108,6 +109,7 @@ class _AddMemberFormState extends State<AddMemberForm> {
     super.initState();
     if (widget.memberDetails != null) {
       _nameC.text = widget.memberDetails['name'];
+      _phoneC.text = widget.memberDetails['phone'];
       _dateC.text = DateFormat('yyyy-MM-dd')
           .format(DateTime.parse(widget.memberDetails['dob']));
       gender = widget.memberDetails['gender'];
@@ -124,73 +126,85 @@ class _AddMemberFormState extends State<AddMemberForm> {
       content: Form(
         key: formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _nameC,
-              validator: alphaNumericValidator,
-              decoration: const InputDecoration(
-                hintText: 'Name',
-                prefixIcon: Icon(Icons.person),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextFormField(
-              controller: _dateC,
-              validator: (value) {
-                if (value != null && value.isNotEmpty) {
-                  return null;
-                } else {
-                  return 'Select Date of Birth';
-                }
-              },
-              readOnly: true,
-              onTap: () async {
-                DateTime? date = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(1900),
-                  lastDate: DateTime.now(),
-                );
-
-                if (date != null) {
-                  _dateC.text = DateFormat('yyyy-MM-dd').format(date);
-                  setState(() {});
-                }
-              },
-              decoration: const InputDecoration(
-                hintText: 'Date of Birth',
-                prefixIcon: Icon(Icons.date_range),
-              ),
-            ),
-            const SizedBox(height: 10),
-            CustomSelectBox(
-              items: [
-                CustomSelectBoxItem(label: 'Male', value: 'male'),
-                CustomSelectBoxItem(label: 'Female', value: 'female'),
-                CustomSelectBoxItem(label: 'Other', value: 'other'),
-              ],
-              label: gender,
-              onChange: (value) {
-                gender = value != null ? value.value : 'male';
-                setState(() {});
-              },
-              iconData: Icons.people,
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Expanded(
-                  child: DisastersSelector(
-                    label: disasterLabel,
-                    onSelect: (value) {
-                      disasterId = value;
-                    },
-                  ),
+        child: Flexible(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              TextFormField(
+                controller: _nameC,
+                validator: alphaNumericValidator,
+                decoration: const InputDecoration(
+                  hintText: 'Name',
+                  prefixIcon: Icon(Icons.person),
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _phoneC,
+                validator: phoneValidator,
+                decoration: const InputDecoration(
+                  hintText: 'Phone Number',
+                  prefixIcon: Icon(Icons.phone),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _dateC,
+                validator: (value) {
+                  if (value != null && value.isNotEmpty) {
+                    return null;
+                  } else {
+                    return 'Select Date of Birth';
+                  }
+                },
+                readOnly: true,
+                onTap: () async {
+                  DateTime? date = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime.now(),
+                  );
+
+                  if (date != null) {
+                    _dateC.text = DateFormat('yyyy-MM-dd').format(date);
+                    setState(() {});
+                  }
+                },
+                decoration: const InputDecoration(
+                  hintText: 'Date of Birth',
+                  prefixIcon: Icon(Icons.date_range),
+                ),
+              ),
+              const SizedBox(height: 10),
+              CustomSelectBox(
+                items: [
+                  CustomSelectBoxItem(label: 'Male', value: 'male'),
+                  CustomSelectBoxItem(label: 'Female', value: 'female'),
+                  CustomSelectBoxItem(label: 'Other', value: 'other'),
+                ],
+                label: gender,
+                onChange: (value) {
+                  gender = value != null ? value.value : 'male';
+                  setState(() {});
+                },
+                iconData: Icons.people,
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: DisastersSelector(
+                      label: disasterLabel,
+                      onSelect: (value) {
+                        disasterId = value;
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       primaryButtonLabel: 'Save',
@@ -202,6 +216,7 @@ class _AddMemberFormState extends State<AddMemberForm> {
                 EditMemberEvent(
                   memberId: widget.memberDetails['id'],
                   name: _nameC.text.trim(),
+                  phone: _phoneC.text.trim(),
                   dob: _dateC.text.trim(),
                   gender: gender,
                   disasterId: disasterId,
@@ -211,6 +226,7 @@ class _AddMemberFormState extends State<AddMemberForm> {
               widget.manageMembersBloc.add(
                 AddMemberEvent(
                   name: _nameC.text.trim(),
+                  phone: _phoneC.text.trim(),
                   dob: _dateC.text.trim(),
                   gender: gender,
                   disasterId: disasterId,
