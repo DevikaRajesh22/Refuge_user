@@ -257,7 +257,13 @@ class _AddHazardFormState extends State<AddHazardForm> {
           children: [
             TextFormField(
               controller: _descC,
-              validator: alphaNumericValidator,
+              validator: (value) {
+                if (value != null && value.isNotEmpty) {
+                  return null;
+                } else {
+                  return 'Enter the description';
+                }
+              },
               minLines: 3,
               maxLines: 5,
               decoration: const InputDecoration(
