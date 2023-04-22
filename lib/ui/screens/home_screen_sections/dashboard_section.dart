@@ -25,15 +25,18 @@ class _DashboardSectionState extends State<DashboardSection> {
               child: InkWell(
                 borderRadius: BorderRadius.circular(30),
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
+                  ),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       const Icon(
                         Icons.groups,
-                        size: 50,
+                        size: 40,
                         color: Colors.blue,
                       ),
-                      const SizedBox(height: 10),
                       Text(
                         'Stay Calm',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -54,7 +57,9 @@ class _DashboardSectionState extends State<DashboardSection> {
                 ),
               ),
             ),
-            const Expanded(child: Divider()),
+            const Divider(
+              height: 30,
+            ),
             Material(
               borderRadius: BorderRadius.circular(30),
               elevation: 0,
@@ -69,12 +74,13 @@ class _DashboardSectionState extends State<DashboardSection> {
                   );
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Column(
                     children: [
                       const Icon(
                         Icons.warning,
-                        size: 50,
+                        size: 40,
                         color: Colors.red,
                       ),
                       const SizedBox(height: 10),
@@ -122,12 +128,13 @@ class _DashboardSectionState extends State<DashboardSection> {
                   );
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Column(
                     children: [
                       const Icon(
                         Icons.report,
-                        size: 50,
+                        size: 40,
                         color: Colors.orange,
                       ),
                       const SizedBox(height: 10),
